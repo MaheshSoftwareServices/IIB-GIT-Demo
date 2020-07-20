@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+
+<project name="project" default="run">
+
+  <target name="run" description="">
+
+    <property name="toolkit.home" value="C:\Program Files\IBM\IIB\10.0.0.20\tools" />
+
+    <property name="workspaces.dir" value="C:\Users\db2admin\IBM\IIBT10\workspace" />
+
+    <property name="runtime.dir" value="C:\Program Files\IBM\IIB\10.0.0.20\server\bin" />
+ 
+    <property name="appln.name" value="RESTRequest_API" />
+
+    <!--<property name="bar.name" value="${workspaces.dir}\${appln.name}\Build\${appln.name}.bar" /> -->
+
+    <antcall target="mqsideploybar" />
+
+  </target>
+
+  <target name="mqsideploybar">
+   <exec executable="${runtime.dir}\mqsideployscript.bat" spawn="false">
+
+      <arg value="${Brokername}" />
+
+      <arg value="-e" />
+
+      <arg value="${execution.group}" />
+
+      <arg value="-d" />
+
+      <arg value="${appln.name}" />
+
+    </exec>
+
+    <echo message=" ${bar.name} App UiInstallation Completed " />
+
+  </target>
+
+</project>
